@@ -13,14 +13,15 @@ public class Encryptor {
     
     public static String[][] generateEncryptArray(String message, int rows) {
         String[][] array = new String[rows][determineColumns(message.length(), rows)];
+        int idx = 0;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length; j++) {
-                int idx = i * array[0].length + j;
                 if (idx >= message.length()) {
                     array[i][j] = "=";
                 } else {
                     array[i][j] = message.substring(idx, idx + 1);
                 }
+                idx++;
             }
         }
         return array;
@@ -40,10 +41,15 @@ public class Encryptor {
     public static String decryptMessage(String encryptedMessage, int rows) {
         String str = "";
         String[][] array = new String[rows][determineColumns(encryptedMessage.length(), rows)];
+        int idx = 0;
         for (int i = array[0].length - 1; i >= 0; i--) {
             for (int j = 0; j < rows; j++) {
-                int idx = j * array[0].length + array.length - i - 1;
-                array[j][i] = encryptedMessage.substring(idx, idx + 1);
+                if (idx >= encryptedMessage.length()) {
+                    array[j][i] = "=";
+                } else {
+                    array[j][i] = encryptedMessage.substring(idx, idx + 1);
+                }
+                idx++;
             }
         }
         for (String[] row : array) {
