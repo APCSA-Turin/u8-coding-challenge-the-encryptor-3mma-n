@@ -57,9 +57,7 @@ public class Encryptor {
                 if (!item.equals("=")) {
                     str += item;
                 }
-                System.out.print(item + " ");
             }
-            System.out.println();
         }
         return str;
 
@@ -79,25 +77,9 @@ public class Encryptor {
     }
 
     public static void main(String[] args) {
-        String message = "ABCDEFGHIJK";
-        int rows = 3;
-        String[][] array = generateEncryptArray(message, rows);
-        for (String[] row : array) {
-            for (String item : row) {
-                System.out.print(item + " ");
-            }
-            System.out.println();
-        }
-        String encrypted = encryptMessage(message, rows);
+        String message = "veSDom :lon  wiMe  EWenT";
+        int rows = 4;
+        String encrypted = decryptMessage(message, rows);
         System.out.println(encrypted);
-        String[][] array2 = generateEncryptArray(encrypted, rows);
-        for (String[] row : array2) {
-            for (String item : row) {
-                System.out.print(item + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-        System.out.println(decryptMessage(encrypted, rows));
     }
 }
